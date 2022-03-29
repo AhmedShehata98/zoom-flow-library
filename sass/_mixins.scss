@@ -1,0 +1,77 @@
+@mixin flexBox($dir,$justify) {
+    display: flex;
+    flex-direction: $dir ;
+    justify-content: $justify;
+    align-items: center;
+}
+
+@mixin endPoint($media) {
+    @if($media == 'xsm'){
+        @media (max-width:567px) {
+            @content;
+        }
+    }@else if ($media == 'sm'){
+        @media (max-width:768px) {
+            @content;
+        }
+    }@else if ($media == 'lg'){
+        @media (max-width:991px) {
+            @content;
+        }
+    }@else if ($media == 'xl'){
+        @media (max-width:1200px) {
+            @content;
+        }
+    }
+}
+
+@mixin sectionTitle {
+    >.container-fluid:first-child{
+        >.tryIt-header{
+            @include flexBox(row, center);
+            height: 70px;
+            margin: 2.5rem auto;
+            
+            >h3.sectionTitle{
+                position: relative;
+                z-index: 5;
+                color: #f6f6f8;
+                padding: 0.5rem 0;
+
+                &:after{
+                    content: '';
+                    position: absolute;
+                    left: calc(100% + 18px);
+                    top: 0;
+                    width: 4px;
+                    height: 100%;
+                    background-color: $therd-clr;
+                }
+                
+                &:before{
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    left: 114%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width:  12px;
+                    height: 12px;
+                    background-color: $therd-clr;
+                    // border-radius: 50%;
+                    transition: width 0.3s ease-out 0.5s ,
+                        height 0.3s ease-out 0.5s ,
+                        left 0.3s ease-out ;
+                }
+                
+            }
+
+            &:hover .sectionTitle::before {
+                left: -10px;
+                width: 120%;
+                height: 100%;
+                border-radius: 0%;
+            }
+        }
+    }
+}

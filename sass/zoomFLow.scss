@@ -1,0 +1,142 @@
+@import './mixins';
+.baseOverlay{
+    position: fixed;
+    z-index: 1058;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    
+    
+    .backdropOverlay{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 10, 10, 0.945);
+
+        .imageContainer{
+            position: relative;
+            width: 60%;
+            height: 80%;
+            overflow: hidden;
+            background-color: #252525;
+            margin-top: 5.5rem;
+
+            @include endPoint(sm){
+                width: calc(100% - 20px);
+                height: 50%;
+            }
+            
+            .mainImageBox{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: fit-content;
+                height: fit-content;
+                transform: translate(-50% , -50%);
+                padding: 0.75rem;
+
+                >.previewImg{
+                    width: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    cursor: move;
+                    user-select: none;
+                    -webkit-user-drag: none;
+                    transition:transform 0.5s ease-in-out ;
+                }
+            }
+        }
+
+        .optionsBox{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: rgba(102, 102, 102, 0.212);
+
+            >.closeBTN
+            {
+                width: 30px;
+                height: 30px;
+                border: 1px solid #f60;
+                background-color: #111;
+                text-align: center;
+                margin-right: auto;
+
+                .closeIcon{
+                    color: #f60;
+                    line-height: 1.5rem;
+                    cursor: pointer;
+                    margin: auto;
+                }
+            }
+            .zoomControlBTNS{
+                width: 35%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 15px;
+                margin: auto;
+
+                .zoomIN,.zoomOUT{
+                    position: relative;
+                    width: 30px;
+                    height: 30px;
+                    border: 2px solid #f60;
+                    border-radius: 50%;
+                    border-color: #c4c4c4;
+                    background-color: rgba(17, 17, 17, 0.377);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.3rem;
+                    margin-left: 15px;
+                    color: #fff;
+                    user-select: none;
+
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        position: absolute;
+                        top: calc(100% - 3px);
+                        left: calc(100% - 4px);
+                        width: 3px;
+                        height: calc(100% - 11px);
+                        background-color: #c4c4c4;
+                        transform: rotate(140deg) translateX(-50%);
+                    }
+
+                    &:hover{
+                        background-color: #666;
+                    }
+
+                    &.disabled{
+                        opacity: 0.3;
+                        cursor: no-drop;
+                    }
+                }
+            }
+        }
+    }
+
+}
+.prevent_Scoll{
+    height: 100vh;
+    overflow-y: hidden;
+
+    @include endPoint(small){
+        position: fixed;
+    }
+}
